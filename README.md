@@ -1,2 +1,2 @@
 # Customer_Churn_Prediction
-Shift Academy - Customer Churn Prediction
+Kaggle - Telco Customer Churn Prediction
