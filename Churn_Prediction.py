@@ -2,7 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py:percent
+#     formats: ipynb,py:percent,md
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -54,21 +54,21 @@
 # %% [markdown] colab_type="text" id="pK92zibbXnyR"
 # # Data Importing and First Lookup
 
-# %% colab_type="code" id="4KZvfSUjRrUK" colab={} outputId="cbe4c6e2-6aba-4ac5-d9af-6b6ecb38815d"
+# %% colab={} colab_type="code" id="4KZvfSUjRrUK" outputId="cbe4c6e2-6aba-4ac5-d9af-6b6ecb38815d"
 # !pip install seaborn -U
 
-# %% colab_type="code" id="bcJHDkBfN4Ss" colab={}
+# %% colab={} colab_type="code" id="bcJHDkBfN4Ss"
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
 import seaborn as sns 
 sns.set(style='ticks', palette="deep", font_scale=1.1, rc={"figure.figsize": [7, 5]})
 
-# %% colab_type="code" id="bV34x5q-SLt2" colab={"base_uri": "https://localhost:8080/", "height": 309} executionInfo={"elapsed": 3491, "status": "ok", "timestamp": 1600452217316, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="2a922f9b-23e8-4301-8439-114e83c84a8b"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 309} colab_type="code" executionInfo={"elapsed": 3491, "status": "ok", "timestamp": 1600452217316, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="bV34x5q-SLt2" outputId="2a922f9b-23e8-4301-8439-114e83c84a8b"
 data = pd.read_csv('telco.csv', sep=';')
 data.head()
 
-# %% colab_type="code" id="Ra746CMhScMc" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 3463, "status": "ok", "timestamp": 1600452217316, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="2723d54c-7dc7-4577-93cd-cc836df38227"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 3463, "status": "ok", "timestamp": 1600452217316, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="Ra746CMhScMc" outputId="2723d54c-7dc7-4577-93cd-cc836df38227"
 data.shape
 
 # %% [markdown] colab_type="text" id="_DvBcP4GZfOi"
@@ -81,7 +81,7 @@ data.shape
 # %% [markdown] colab_type="text" id="vO2fYxYuagp7"
 # Lets look at the data type and missing values
 
-# %% colab_type="code" id="yYCzYcHQSvKR" colab={"base_uri": "https://localhost:8080/", "height": 493} executionInfo={"elapsed": 3439, "status": "ok", "timestamp": 1600452217317, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="8a1b6006-0ed5-4e7c-9524-ebd212c3cad4"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 493} colab_type="code" executionInfo={"elapsed": 3439, "status": "ok", "timestamp": 1600452217317, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="yYCzYcHQSvKR" outputId="8a1b6006-0ed5-4e7c-9524-ebd212c3cad4"
 data.info()
 
 # %% [markdown] colab_type="text" id="rzv9D1RwaNOM"
@@ -96,12 +96,12 @@ data.info()
 #
 # Next, we want to examine totalcharges why it has an object type.
 
-# %% colab_type="code" id="GJ9gPp1UioVm" colab={}
+# %% colab={} colab_type="code" id="GJ9gPp1UioVm"
 # Change seniorcitizen column values to Yes and No
 map_yesno = {1:'Yes', 0:'No'}
 data['seniorcitizen'] = data['seniorcitizen'].map(map_yesno)
 
-# %% colab_type="code" id="tl9l5xGEg2tE" colab={"base_uri": "https://localhost:8080/", "height": 374} executionInfo={"elapsed": 3400, "status": "ok", "timestamp": 1600452217321, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="59dfed38-dc32-4154-e141-192c28e1c2f0"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 374} colab_type="code" executionInfo={"elapsed": 3400, "status": "ok", "timestamp": 1600452217321, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="tl9l5xGEg2tE" outputId="59dfed38-dc32-4154-e141-192c28e1c2f0"
 # Check whether columns value contains  other than numeric and alphabet
 for col in data.columns:
   print(col, data.loc[~data[col].astype(str).str.contains(pat='[0-9a-zA-Z]'), col].tolist())
@@ -110,7 +110,7 @@ for col in data.columns:
 # It turns out that the totalcharges column has a value containing ' '(space). This is why the data type is object. <br>
 # It is necessary to change the value containing ' '(space) and change the data type to numeric.
 
-# %% colab_type="code" id="HAs0B-n_VT2S" colab={}
+# %% colab={} colab_type="code" id="HAs0B-n_VT2S"
 # Change data type to numeric
 # Nonconvertible value will automatically inputed with NaN
 data['totalcharges'] = pd.to_numeric(data['totalcharges'], errors='coerce')
@@ -118,7 +118,7 @@ data['totalcharges'] = pd.to_numeric(data['totalcharges'], errors='coerce')
 # %% [markdown] colab_type="text" id="keh7Q_KLlcfU"
 # After we change the data type, there must be some missing values appear.
 
-# %% colab_type="code" id="eaz_0DocYIVo" colab={"base_uri": "https://localhost:8080/", "height": 391} executionInfo={"elapsed": 3356, "status": "ok", "timestamp": 1600452217322, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="661df71f-76e9-4e5a-acc0-99cf4fa91e84"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 391} colab_type="code" executionInfo={"elapsed": 3356, "status": "ok", "timestamp": 1600452217322, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="eaz_0DocYIVo" outputId="661df71f-76e9-4e5a-acc0-99cf4fa91e84"
 data.isna().sum()
 
 
@@ -134,7 +134,7 @@ data.isna().sum()
 # %% [markdown] colab_type="text" id="S9w0Dso5AKsU"
 # Make some function to plot custom visualization.
 
-# %% colab_type="code" id="EdFBpPdosg-B" colab={}
+# %% colab={} colab_type="code" id="EdFBpPdosg-B"
 def countplot_annot(nrow, ncol, columns, data, 
                     rotate=None, rcol=None,
                     t_height=25):
@@ -196,19 +196,19 @@ def countplot_annot_hue(nrow, ncol, columns, hue, data,
 # %% [markdown] colab_type="text" id="4qu6ouzdcuDD"
 # Divide columns to their category to make easier visualization.
 
-# %% colab_type="code" id="pOzeqGSJS3QF" colab={"base_uri": "https://localhost:8080/", "height": 493} executionInfo={"elapsed": 3318, "status": "ok", "timestamp": 1600452217324, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="3952762f-8f8a-4956-d2af-9cf81c9584b1"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 493} colab_type="code" executionInfo={"elapsed": 3318, "status": "ok", "timestamp": 1600452217324, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="pOzeqGSJS3QF" outputId="3952762f-8f8a-4956-d2af-9cf81c9584b1"
 for col in data.columns:
   print(col, data[col].unique())
 
-# %% colab_type="code" id="RDVH5DqjZX0W" colab={}
+# %% colab={} colab_type="code" id="RDVH5DqjZX0W"
 num_cols = ['tenure', 'monthlycharges', 'totalcharges']
 cat_cols = [col for col in data.columns if col not in num_cols + ['customerid', 'churn']]
 target_col = 'churn'
 
-# %% colab_type="code" id="bE-d9fziaGck" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 3681, "status": "ok", "timestamp": 1600452217727, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="72f312b8-b4f2-43e8-d4ce-4533016bbd6b"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 3681, "status": "ok", "timestamp": 1600452217727, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="bE-d9fziaGck" outputId="72f312b8-b4f2-43e8-d4ce-4533016bbd6b"
 data.shape
 
-# %% colab_type="code" id="PAxug4BmaI1N" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 3653, "status": "ok", "timestamp": 1600452217728, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="6a4793b4-884e-437a-835f-610c9df3b842"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 3653, "status": "ok", "timestamp": 1600452217728, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="PAxug4BmaI1N" outputId="6a4793b4-884e-437a-835f-610c9df3b842"
 len(num_cols + cat_cols + [target_col])
 
 # %% [markdown] colab_type="text" id="WUtTXtFDdPeC"
@@ -217,7 +217,7 @@ len(num_cols + cat_cols + [target_col])
 # %% [markdown] colab_type="text" id="TFLdLmKjenDr"
 # #### Target Class
 
-# %% colab_type="code" id="61V9AVkJdcYN" colab={"base_uri": "https://localhost:8080/", "height": 342} executionInfo={"elapsed": 3618, "status": "ok", "timestamp": 1600452217729, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="64ff2e8a-9245-4b1b-fd26-3013dc580a28"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 342} colab_type="code" executionInfo={"elapsed": 3618, "status": "ok", "timestamp": 1600452217729, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="61V9AVkJdcYN" outputId="64ff2e8a-9245-4b1b-fd26-3013dc580a28"
 countplot_annot(1, 1, columns=[target_col], data=data)
 
 # %% [markdown] colab_type="text" id="BIlSBGaSfM_O"
@@ -232,10 +232,10 @@ countplot_annot(1, 1, columns=[target_col], data=data)
 # %% [markdown] colab_type="text" id="ExwrFABjevVA"
 # #### Numerical Features
 
-# %% colab_type="code" id="SL2-bj9zi3BX" colab={"base_uri": "https://localhost:8080/", "height": 297} executionInfo={"elapsed": 3579, "status": "ok", "timestamp": 1600452217730, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="3e011791-7cff-434b-9029-c98708ebe32d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 297} colab_type="code" executionInfo={"elapsed": 3579, "status": "ok", "timestamp": 1600452217730, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="SL2-bj9zi3BX" outputId="3e011791-7cff-434b-9029-c98708ebe32d"
 data[num_cols].describe()
 
-# %% colab_type="code" id="SLQ5PrN2dtze" colab={"base_uri": "https://localhost:8080/", "height": 506} executionInfo={"elapsed": 4753, "status": "ok", "timestamp": 1600452218946, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="07efbc4c-6ff7-4eb0-d97f-ed89a0625040"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 506} colab_type="code" executionInfo={"elapsed": 4753, "status": "ok", "timestamp": 1600452218946, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="SLQ5PrN2dtze" outputId="07efbc4c-6ff7-4eb0-d97f-ed89a0625040"
 plt.figure(figsize=(15,7))
 for i, col in enumerate(num_cols):
   plt.subplot(2,3,i+1)
@@ -252,7 +252,7 @@ plt.tight_layout()
 # %% [markdown] colab_type="text" id="mYJeOpB2e55a"
 # #### Categorical Features
 
-# %% colab_type="code" id="phnmBYdknNic" colab={"base_uri": "https://localhost:8080/", "height": 722} executionInfo={"elapsed": 5566, "status": "ok", "timestamp": 1600452219823, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="3a08a261-bab1-4df7-e8f3-568a0dbdb6f6"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 722} colab_type="code" executionInfo={"elapsed": 5566, "status": "ok", "timestamp": 1600452219823, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="phnmBYdknNic" outputId="3a08a261-bab1-4df7-e8f3-568a0dbdb6f6"
 plt.figure(figsize=(20,10))
 countplot_annot(2, 4, cat_cols[:8], data)
 plt.tight_layout()
@@ -268,7 +268,7 @@ plt.tight_layout()
 # *   Customer who has multiple lines are slighly lower tha who don't.
 # *   44% of customers registered to Fiber Optic, 34.4% to DSL, and 21.7% who do not register to internet service. 
 
-# %% colab_type="code" id="8HbpREjLtIQs" colab={"base_uri": "https://localhost:8080/", "height": 722} executionInfo={"elapsed": 6360, "status": "ok", "timestamp": 1600452220650, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="2d4e5753-231f-4cd8-f434-6cc03c31e268"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 722} colab_type="code" executionInfo={"elapsed": 6360, "status": "ok", "timestamp": 1600452220650, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="8HbpREjLtIQs" outputId="2d4e5753-231f-4cd8-f434-6cc03c31e268"
 plt.figure(figsize=(20,10))
 countplot_annot(2, 4, cat_cols[8:], data,
                 rotate=25, rcol=['paymentmethod'])
@@ -287,7 +287,7 @@ plt.tight_layout()
 # %% [markdown] colab_type="text" id="3Ks2IjjAEPT8"
 # #### Numerical Features
 
-# %% colab_type="code" id="Ev6qZl6gG7ut" colab={"base_uri": "https://localhost:8080/", "height": 294} executionInfo={"elapsed": 7169, "status": "ok", "timestamp": 1600452221486, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="8bbadb74-4653-4d5c-da9f-940ea9e338a4"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 294} colab_type="code" executionInfo={"elapsed": 7169, "status": "ok", "timestamp": 1600452221486, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="Ev6qZl6gG7ut" outputId="8bbadb74-4653-4d5c-da9f-940ea9e338a4"
 plt.figure(figsize=(15,4))
 for i, col in enumerate(num_cols):
   plt.subplot(1,3,i+1)
@@ -299,14 +299,14 @@ plt.tight_layout()
 # * In feature tenure and monthly charges, negative (non churn) class has a bimodal distribution, while positive class does not.
 # * As for total charges, the distribution between the two classes is similar.
 
-# %% colab_type="code" id="GD2aMj-Sx5_U" colab={"base_uri": "https://localhost:8080/", "height": 290} executionInfo={"elapsed": 7588, "status": "ok", "timestamp": 1600452221937, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="c59e285a-30b8-4cdf-e6b1-c94d170f04eb"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 290} colab_type="code" executionInfo={"elapsed": 7588, "status": "ok", "timestamp": 1600452221937, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="GD2aMj-Sx5_U" outputId="c59e285a-30b8-4cdf-e6b1-c94d170f04eb"
 plt.figure(figsize=(15,4))
 for i, col in enumerate(num_cols):
   plt.subplot(1,3,i+1)
   sns.boxplot(data=data, x=target_col, y=col)
 plt.tight_layout()
 
-# %% colab_type="code" id="FLybZgE0BsQP" colab={"base_uri": "https://localhost:8080/", "height": 290} executionInfo={"elapsed": 7973, "status": "ok", "timestamp": 1600452222365, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="7bc0cd7a-b137-45a0-8257-a830e131de4b"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 290} colab_type="code" executionInfo={"elapsed": 7973, "status": "ok", "timestamp": 1600452222365, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="FLybZgE0BsQP" outputId="7bc0cd7a-b137-45a0-8257-a830e131de4b"
 plt.figure(figsize=(15,4))
 for i, col in enumerate(num_cols):
   plt.subplot(1,3,i+1)
@@ -322,7 +322,7 @@ plt.tight_layout()
 # %% [markdown] colab_type="text" id="NXVUF3GQESPk"
 # #### Categorical Features
 
-# %% colab_type="code" id="NFopUfFMYT9i" colab={"base_uri": "https://localhost:8080/", "height": 721} executionInfo={"elapsed": 9739, "status": "ok", "timestamp": 1600452224163, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="a0ab839f-b956-4576-8659-1667466778a2"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 721} colab_type="code" executionInfo={"elapsed": 9739, "status": "ok", "timestamp": 1600452224163, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="NFopUfFMYT9i" outputId="a0ab839f-b956-4576-8659-1667466778a2"
 plt.figure(figsize=(20,10))
 countplot_annot_hue(2, 4, columns=cat_cols[:8], hue=target_col, data=data)
 plt.tight_layout()
@@ -331,7 +331,7 @@ plt.tight_layout()
 # *   From this comparation, the tendency for churn are more occurs on customers from the senior citizens, who do not have a partner, and who do not have dependents.
 # *   In addition, customers who subscribe to fiber optic have a higher churn rate when compared to other services.
 
-# %% colab_type="code" id="5rEim7kEf1Xg" colab={"base_uri": "https://localhost:8080/", "height": 722} executionInfo={"elapsed": 11567, "status": "ok", "timestamp": 1600452226016, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="545f08bb-c398-4062-a634-62eea487b6af"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 722} colab_type="code" executionInfo={"elapsed": 11567, "status": "ok", "timestamp": 1600452226016, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="5rEim7kEf1Xg" outputId="545f08bb-c398-4062-a634-62eea487b6af"
 plt.figure(figsize=(20,10))
 countplot_annot_hue(2, 4, columns=cat_cols[8:], hue=target_col, data=data,
                 rotate=25, rcol=['paymentmethod'], t_height=15)
@@ -347,17 +347,17 @@ plt.tight_layout()
 # %% [markdown] colab_type="text" id="bVQp2skJMwuP"
 # #### Features Corelation
 
-# %% colab_type="code" id="3CsTpULnxUJI" colab={}
+# %% colab={} colab_type="code" id="3CsTpULnxUJI"
 mapping = {'Yes' : 1, 'No' : 0}
 data[target_col] = data[target_col].map(mapping)
 
-# %% colab_type="code" id="gtGpG8CAuDD_" colab={"base_uri": "https://localhost:8080/", "height": 173} executionInfo={"elapsed": 11529, "status": "ok", "timestamp": 1600452226020, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="fc23bf24-5446-4616-c54b-c58b410d6d63"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 173} colab_type="code" executionInfo={"elapsed": 11529, "status": "ok", "timestamp": 1600452226020, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="gtGpG8CAuDD_" outputId="fc23bf24-5446-4616-c54b-c58b410d6d63"
 data[num_cols + [target_col]].corr()
 
-# %% colab_type="code" id="feKdg6Qlw_Gp" colab={"base_uri": "https://localhost:8080/", "height": 432} executionInfo={"elapsed": 11500, "status": "ok", "timestamp": 1600452226022, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="5fffe577-b036-4eaf-bb67-bfbce525c34a"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 432} colab_type="code" executionInfo={"elapsed": 11500, "status": "ok", "timestamp": 1600452226022, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="feKdg6Qlw_Gp" outputId="5fffe577-b036-4eaf-bb67-bfbce525c34a"
 sns.heatmap(data[num_cols + [target_col]].corr(), annot=True, linewidths=.5, fmt= '.2f')
 
-# %% colab_type="code" id="qEq65GszT1DK" colab={"base_uri": "https://localhost:8080/", "height": 776} executionInfo={"elapsed": 18341, "status": "ok", "timestamp": 1600452232892, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="ef550992-6a68-4c53-aff0-adfcb1bed245"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 776} colab_type="code" executionInfo={"elapsed": 18341, "status": "ok", "timestamp": 1600452232892, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="qEq65GszT1DK" outputId="ef550992-6a68-4c53-aff0-adfcb1bed245"
 sns.pairplot(data[num_cols + [target_col]], hue=target_col, height=3.5, aspect=1.4)
 
 # %% [markdown] colab_type="text" id="GWtU2JXVNLe5"
@@ -377,17 +377,17 @@ sns.pairplot(data[num_cols + [target_col]], hue=target_col, height=3.5, aspect=1
 # %% [markdown] colab_type="text" id="z1qC2j_9l5g-"
 # ### Train Test Split
 
-# %% colab_type="code" id="3pAWiFp8l2jC" colab={}
+# %% colab={} colab_type="code" id="3pAWiFp8l2jC"
 from sklearn.model_selection import train_test_split
 
-# %% colab_type="code" id="oQlFHyWTmHYJ" colab={}
+# %% colab={} colab_type="code" id="oQlFHyWTmHYJ"
 train, test = train_test_split(data[num_cols + cat_cols + [target_col]],
                                test_size=0.2, random_state=14)
 
-# %% colab_type="code" id="zHs2PdYee_x7" colab={"base_uri": "https://localhost:8080/", "height": 342} executionInfo={"elapsed": 18297, "status": "ok", "timestamp": 1600452232898, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="0fd76453-dc9c-44ec-ec7d-f9faeffdccf0"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 342} colab_type="code" executionInfo={"elapsed": 18297, "status": "ok", "timestamp": 1600452232898, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="zHs2PdYee_x7" outputId="0fd76453-dc9c-44ec-ec7d-f9faeffdccf0"
 countplot_annot(1, 1, columns=[target_col], data=train)
 
-# %% colab_type="code" id="15GFh0Hne_h8" colab={"base_uri": "https://localhost:8080/", "height": 342} executionInfo={"elapsed": 18261, "status": "ok", "timestamp": 1600452232900, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="ca5e4b7d-02d4-40a1-a702-13bb34bc3ba0"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 342} colab_type="code" executionInfo={"elapsed": 18261, "status": "ok", "timestamp": 1600452232900, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="15GFh0Hne_h8" outputId="ca5e4b7d-02d4-40a1-a702-13bb34bc3ba0"
 countplot_annot(1, 1, columns=[target_col], data=test, t_height=5)
 
 # %% [markdown] colab_type="text" id="eRdNLqcem-r1"
@@ -397,38 +397,38 @@ countplot_annot(1, 1, columns=[target_col], data=test, t_height=5)
 # We will remove this outlier with a threshold of 10000 for total charges and 80 for tenure. <br>
 # Outliers above those values will be discarded from the data set.
 
-# %% [markdown] id="-0pZQ8BWqTSK" colab_type="text"
+# %% [markdown] colab_type="text" id="-0pZQ8BWqTSK"
 # ##### Before remove outlier
 
-# %% colab_type="code" id="Nzphx-honCps" colab={"base_uri": "https://localhost:8080/", "height": 776} executionInfo={"elapsed": 21635, "status": "ok", "timestamp": 1600452236299, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="b5b5b3c4-3ed0-4b4d-c5c6-b4a93093fdad"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 776} colab_type="code" executionInfo={"elapsed": 21635, "status": "ok", "timestamp": 1600452236299, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="Nzphx-honCps" outputId="b5b5b3c4-3ed0-4b4d-c5c6-b4a93093fdad"
 sns.pairplot(train[num_cols], height=2.5, aspect=1.4)
 
-# %% colab_type="code" id="jOmcRT3UkTzB" colab={}
+# %% colab={} colab_type="code" id="jOmcRT3UkTzB"
 train = train.drop(index=train[train['tenure']>80].index)
 train = train.drop(index=train[train['totalcharges']>10000].index)
 
 test = test.drop(index=test[test['tenure']>80].index)
 test = test.drop(index=test[test['totalcharges']>10000].index)
 
-# %% [markdown] id="bBRXlxdeqTST" colab_type="text"
+# %% [markdown] colab_type="text" id="bBRXlxdeqTST"
 # ##### After remove outlier
 
-# %% colab_type="code" id="vSdVCM9fpSN8" colab={"base_uri": "https://localhost:8080/", "height": 776} executionInfo={"elapsed": 25541, "status": "ok", "timestamp": 1600452240248, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="17e0a13b-cf90-4835-cf66-8559609e6e86"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 776} colab_type="code" executionInfo={"elapsed": 25541, "status": "ok", "timestamp": 1600452240248, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="vSdVCM9fpSN8" outputId="17e0a13b-cf90-4835-cf66-8559609e6e86"
 sns.pairplot(train[num_cols], height=2.5, aspect=1.4)
 
 # %% [markdown] colab_type="text" id="3hqGYNEwoIIq"
 # ### Missing Value Handling
 
-# %% colab_type="code" id="iDxvyJCjoMst" colab={}
+# %% colab={} colab_type="code" id="iDxvyJCjoMst"
 from sklearn.impute import SimpleImputer
 
-# %% colab_type="code" id="5iwyS3aDofKO" colab={"base_uri": "https://localhost:8080/", "height": 165} executionInfo={"elapsed": 25504, "status": "ok", "timestamp": 1600452240250, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="021b467f-c727-4636-b6e5-e28b59fdda6d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 165} colab_type="code" executionInfo={"elapsed": 25504, "status": "ok", "timestamp": 1600452240250, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="5iwyS3aDofKO" outputId="021b467f-c727-4636-b6e5-e28b59fdda6d"
 na_col = pd.DataFrame(train.isna().sum()) / train.shape[0]*100
 na_col.columns = ['NA Train']
 na_col['NA Test'] = test.isna().sum().values / test.shape[0]*100
 round(na_col.sort_values(by='NA Train', ascending=False).T, 2)
 
-# %% colab_type="code" id="chTbyWp3qBQB" colab={"base_uri": "https://localhost:8080/", "height": 358} executionInfo={"elapsed": 25484, "status": "ok", "timestamp": 1600452240251, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="a2773352-aba4-40d4-e449-0b5f151ca844"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 358} colab_type="code" executionInfo={"elapsed": 25484, "status": "ok", "timestamp": 1600452240251, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="chTbyWp3qBQB" outputId="a2773352-aba4-40d4-e449-0b5f151ca844"
 sns.violinplot(data=train, y='totalcharges', x=target_col)
 plt.title('Total Charges distribution')
 plt.show()
@@ -436,12 +436,12 @@ plt.show()
 # %% [markdown] colab_type="text" id="1tm06lSIRE6L"
 # Because total charges feature have highly right skewed distribution, missing value imputation will be done with median value.
 
-# %% colab_type="code" id="x-iDPX-iqKmB" colab={}
+# %% colab={} colab_type="code" id="x-iDPX-iqKmB"
 imputer = SimpleImputer(strategy='median')
 train['totalcharges'] = imputer.fit_transform(train['totalcharges'].values.reshape(-1, 1))
 test['totalcharges'] = imputer.transform(test['totalcharges'].values.reshape(-1, 1))
 
-# %% colab_type="code" id="p7bqrZBkreO5" colab={"base_uri": "https://localhost:8080/", "height": 165} executionInfo={"elapsed": 25453, "status": "ok", "timestamp": 1600452240252, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="db7ef546-e3c4-46cb-8066-f48be9d04a2f"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 165} colab_type="code" executionInfo={"elapsed": 25453, "status": "ok", "timestamp": 1600452240252, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="p7bqrZBkreO5" outputId="db7ef546-e3c4-46cb-8066-f48be9d04a2f"
 na_col = pd.DataFrame(train.isna().sum()) / train.shape[0]*100
 na_col.columns = ['NA Train']
 na_col['NA Test'] = test.isna().sum().values / test.shape[0]*100
@@ -454,7 +454,7 @@ round(na_col.sort_values(by='NA Train', ascending=False).T, 2)
 # %% [markdown] colab_type="text" id="yqPqcZjkTRCi"
 # Make categorize (binning) for tenure feature.
 
-# %% colab_type="code" id="kBagmPJGuLig" colab={}
+# %% colab={} colab_type="code" id="kBagmPJGuLig"
 def tenure_bin(df):
   if df['tenure'] <= 12:
     return '0-1 year'
@@ -470,11 +470,11 @@ def tenure_bin(df):
     return '5-6 year'
 
 
-# %% colab_type="code" id="jgrh9kRzvbQd" colab={}
+# %% colab={} colab_type="code" id="jgrh9kRzvbQd"
 train['tenure_bin'] = train.apply(lambda x: tenure_bin(x), axis=1)
 test['tenure_bin'] = test.apply(lambda x: tenure_bin(x), axis=1)
 
-# %% colab_type="code" id="U9V-s8Tyw-gm" colab={"base_uri": "https://localhost:8080/", "height": 397} executionInfo={"elapsed": 25409, "status": "ok", "timestamp": 1600452240254, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="a964a309-2f76-41b3-db4a-af4a79b6ef1d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 397} colab_type="code" executionInfo={"elapsed": 25409, "status": "ok", "timestamp": 1600452240254, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="U9V-s8Tyw-gm" outputId="a964a309-2f76-41b3-db4a-af4a79b6ef1d"
 plt.figure(figsize=(10,6))
 countplot_annot_hue(1,1, columns=['tenure_bin'], hue=target_col, data=train,
                     t_height=5)
@@ -486,7 +486,7 @@ countplot_annot_hue(1,1, columns=['tenure_bin'], hue=target_col, data=train,
 # %% [markdown] colab_type="text" id="AkRo-_aFsemH"
 # ### Categorical Encoding
 
-# %% colab_type="code" id="n-ArMLKjstAi" colab={}
+# %% colab={} colab_type="code" id="n-ArMLKjstAi"
 map_yn = {'Yes': 1, 'No': 0}
 map_gender = {'Male': 1, 'Female': 0}
 map_tenure = {'0-1 year': 1,
@@ -496,7 +496,7 @@ map_tenure = {'0-1 year': 1,
               '4-5 year': 5,
               '5-6 year': 6}
 
-# %% colab_type="code" id="1vA0mUdQtmzM" colab={}
+# %% colab={} colab_type="code" id="1vA0mUdQtmzM"
 for col in ['seniorcitizen', 'partner', 'dependents', 'phoneservice', 'paperlessbilling']:
   train[col] = train[col].map(map_yn)
   test[col] = test[col].map(map_yn)
@@ -507,21 +507,21 @@ test['gender'] = test['gender'].map(map_gender)
 train['tenure_bin'] = train['tenure_bin'].map(map_tenure)
 test['tenure_bin'] = test['tenure_bin'].map(map_tenure)
 
-# %% colab_type="code" id="tAPeNXrKv8op" colab={}
+# %% colab={} colab_type="code" id="tAPeNXrKv8op"
 train = pd.get_dummies(train)
 test = pd.get_dummies(test)
 
-# %% colab_type="code" id="v3Y4ArR2woE9" colab={"base_uri": "https://localhost:8080/", "height": 258} executionInfo={"elapsed": 25357, "status": "ok", "timestamp": 1600452240256, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="790a8f49-482c-483b-e4fa-aa59c9b0744d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 258} colab_type="code" executionInfo={"elapsed": 25357, "status": "ok", "timestamp": 1600452240256, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="v3Y4ArR2woE9" outputId="790a8f49-482c-483b-e4fa-aa59c9b0744d"
 train.head()
 
 # %% [markdown] colab_type="text" id="1geqxzn4r25t"
 # ### Scaling
 
-# %% colab_type="code" id="7gKqQWtGr6Rc" colab={}
+# %% colab={} colab_type="code" id="7gKqQWtGr6Rc"
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 
-# %% colab_type="code" id="RjKfqo8q1ACH" colab={}
+# %% colab={} colab_type="code" id="RjKfqo8q1ACH"
 features = [col for col in train.columns if col != 'churn']
 X_train = train[features]
 y_train = train['churn']
@@ -529,7 +529,7 @@ y_train = train['churn']
 X_test = test[features]
 y_test = test['churn']
 
-# %% colab_type="code" id="743UaChzsLGc" colab={}
+# %% colab={} colab_type="code" id="743UaChzsLGc"
 X_train_sc = scaler.fit_transform(X_train)
 X_test_sc = scaler.transform(X_test)
 
@@ -554,7 +554,7 @@ X_test_sc = scaler.transform(X_test)
 # %% [markdown] colab_type="text" id="xPAoQUGmxeoA"
 # ### Preparation
 
-# %% colab_type="code" id="voV1KUHQr1jy" colab={}
+# %% colab={} colab_type="code" id="voV1KUHQr1jy"
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -564,7 +564,7 @@ from sklearn.model_selection import GridSearchCV, cross_val_score
 from sklearn import metrics
 
 
-# %% colab_type="code" id="-Li0Jj1UnJOp" colab={}
+# %% colab={} colab_type="code" id="-Li0Jj1UnJOp"
 def make_confusion_matrix(cf,
                           group_names=None,
                           categories='auto',
@@ -665,7 +665,7 @@ def make_confusion_matrix(cf,
         plt.title(title)
 
 
-# %% colab_type="code" id="6JxuujbbxOZv" colab={}
+# %% colab={} colab_type="code" id="6JxuujbbxOZv"
 def model_eval(model, X_train, y_train, 
                scoring_='roc_auc', cv_=5):
   
@@ -683,7 +683,7 @@ def model_eval(model, X_train, y_train,
         np.mean(cv_score),np.std(cv_score),np.min(cv_score),np.max(cv_score)))
 
 
-# %% colab_type="code" id="Bo_XfZGPuJ4f" colab={}
+# %% colab={} colab_type="code" id="Bo_XfZGPuJ4f"
 def test_eval(model, X_test, y_test):
 
     pred = model.predict(X_test)
@@ -714,45 +714,45 @@ def test_eval(model, X_test, y_test):
 # %% [markdown] colab_type="text" id="tQtnxdDuyDEv"
 # #### Logistic Regression
 
-# %% colab_type="code" id="ee_kpf_62e4i" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 27164, "status": "ok", "timestamp": 1600452242163, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="2038c5ef-1468-4ca1-adfc-f8ad8899589e"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 27164, "status": "ok", "timestamp": 1600452242163, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="ee_kpf_62e4i" outputId="2038c5ef-1468-4ca1-adfc-f8ad8899589e"
 lr = LogisticRegression(max_iter=9999)
 model_eval(lr, X_train_sc, y_train)
 
-# %% colab_type="code" id="VjptOCT4ul0u" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 27144, "status": "ok", "timestamp": 1600452242164, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="d665b0cf-0f3d-4d28-fa1f-a491d913da5d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 27144, "status": "ok", "timestamp": 1600452242164, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="VjptOCT4ul0u" outputId="d665b0cf-0f3d-4d28-fa1f-a491d913da5d"
 test_eval(lr, X_test_sc, y_test)
 
 # %% [markdown] colab_type="text" id="HUWT6Vqwx86R"
 # #### Desicion Tree
 
-# %% colab_type="code" id="wy77y0UFxUCM" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 27110, "status": "ok", "timestamp": 1600452242164, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="12e90f3a-e0af-4e14-b648-05055b52a707"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 27110, "status": "ok", "timestamp": 1600452242164, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="wy77y0UFxUCM" outputId="12e90f3a-e0af-4e14-b648-05055b52a707"
 tree = DecisionTreeClassifier()
 model_eval(tree, X_train, y_train)
 
-# %% colab_type="code" id="bjwwj7ZovGNN" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 27070, "status": "ok", "timestamp": 1600452242165, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="30044c1a-091f-47e7-f8e7-f7d1487dc38b"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 27070, "status": "ok", "timestamp": 1600452242165, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="bjwwj7ZovGNN" outputId="30044c1a-091f-47e7-f8e7-f7d1487dc38b"
 test_eval(tree, X_test, y_test)
 
 # %% [markdown] colab_type="text" id="SXdRTXCpyD-9"
 # #### K-Neirest Neighbors
 
-# %% colab_type="code" id="EjvdA4St38BB" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 31311, "status": "ok", "timestamp": 1600452246442, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="6f41a46d-4253-4b15-ece8-62bc7beece96"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 31311, "status": "ok", "timestamp": 1600452246442, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="EjvdA4St38BB" outputId="6f41a46d-4253-4b15-ece8-62bc7beece96"
 knn = KNeighborsClassifier()
 model_eval(knn, X_train_sc, y_train)
 
-# %% colab_type="code" id="mcbCXdt_vSKX" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 32847, "status": "ok", "timestamp": 1600452248020, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="27852542-ba94-4dd9-8d8b-a895ec09e35b"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 32847, "status": "ok", "timestamp": 1600452248020, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="mcbCXdt_vSKX" outputId="27852542-ba94-4dd9-8d8b-a895ec09e35b"
 test_eval(knn, X_test_sc, y_test)
 
 # %% [markdown] colab_type="text" id="d4oSlPdVyEj9"
 # #### XGBoost Classifier
 
-# %% colab_type="code" id="7WSpfF9O4Ysi" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 35343, "status": "ok", "timestamp": 1600452250543, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="cae34625-8670-4bf1-ca04-33beca47fe06"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 35343, "status": "ok", "timestamp": 1600452250543, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="7WSpfF9O4Ysi" outputId="cae34625-8670-4bf1-ca04-33beca47fe06"
 xgb_clf = XGBClassifier(tree_method='gpu_hist',
                         seed=14)
 model_eval(xgb_clf, X_train, y_train)
 
-# %% colab_type="code" id="RRojhIN2Nvav" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 36312, "status": "ok", "timestamp": 1600452251535, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="12bb3cb9-774d-4c85-c1ff-982b7f3fc75d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 36312, "status": "ok", "timestamp": 1600452251535, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="RRojhIN2Nvav" outputId="12bb3cb9-774d-4c85-c1ff-982b7f3fc75d"
 test_eval(xgb_clf, X_test, y_test)
 
-# %% id="lQ5kvZ4yqTTs" colab_type="code" colab={} outputId="cb285901-54e9-41b4-a57a-ac613014ca25"
+# %% colab={} colab_type="code" id="lQ5kvZ4yqTTs" outputId="cb285901-54e9-41b4-a57a-ac613014ca25"
 plt.figure(figsize=(20,15))
 xgb.plot_importance(xgb_clf, ax=plt.gca())
 
@@ -771,7 +771,7 @@ xgb.plot_importance(xgb_clf, ax=plt.gca())
 # %% [markdown] colab_type="text" id="1Kw7WuS5w_OV"
 # ##### Hyperparameter Tunning
 
-# %% colab_type="code" id="20XWZeYa1FUR" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 32259, "status": "ok", "timestamp": 1600325833132, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="4526c797-6659-4117-e6fa-4e34493eade1"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 32259, "status": "ok", "timestamp": 1600325833132, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="20XWZeYa1FUR" outputId="4526c797-6659-4117-e6fa-4e34493eade1"
 # Step 1: Get initial fix learning_rate and n_estimators
 test1 = {'n_estimators':range(20,101,10)}
 grid1 = GridSearchCV(estimator = XGBClassifier(learning_rate =0.05, 
@@ -790,7 +790,7 @@ grid1 = GridSearchCV(estimator = XGBClassifier(learning_rate =0.05,
 grid1.fit(X_train, y_train)
 grid1.best_params_, grid1.best_score_
 
-# %% colab_type="code" id="sdTj3FFS2Ktp" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 68341, "status": "ok", "timestamp": 1600326257892, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="898e6a85-ba0c-4ef2-88e7-79eba0e272e5"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 68341, "status": "ok", "timestamp": 1600326257892, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="sdTj3FFS2Ktp" outputId="898e6a85-ba0c-4ef2-88e7-79eba0e272e5"
 # Step 2: Tune max_depth and min_child_weight
 test2 = {'max_depth': range(3,10,2),
          'min_child_weight': range(1,6,2)}
@@ -811,7 +811,7 @@ grid2 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
 grid2.fit(X_train, y_train)
 grid2.best_params_, grid2.best_score_
 
-# %% colab_type="code" id="IVJqixKa2Qi5" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 37041, "status": "ok", "timestamp": 1600326461592, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="3bf6125e-243b-4620-82e1-6a8f7a90d72f"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 37041, "status": "ok", "timestamp": 1600326461592, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="IVJqixKa2Qi5" outputId="3bf6125e-243b-4620-82e1-6a8f7a90d72f"
 # Step 2b: Tune max_depth and min_child_weight
 test2 = {'max_depth': [4,5,6],
          'min_child_weight': [4,5,6]}
@@ -832,7 +832,7 @@ grid2 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
 grid2.fit(X_train, y_train)
 grid2.best_params_, grid2.best_score_
 
-# %% colab_type="code" id="RGiWtG_r2QWu" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 17856, "status": "ok", "timestamp": 1600326488650, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="1822aa32-e230-4eb5-d902-fe6a2e42ea7a"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 17856, "status": "ok", "timestamp": 1600326488650, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="RGiWtG_r2QWu" outputId="1822aa32-e230-4eb5-d902-fe6a2e42ea7a"
 # Step 3: Tune gamma
 test3 = {'gamma': [i/10.0 for i in range(0,5)]}
 grid3 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
@@ -852,7 +852,7 @@ grid3 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
 grid3.fit(X_train, y_train)
 grid3.best_params_, grid3.best_score_
 
-# %% colab_type="code" id="iUXhuxLd2QJx" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 51686, "status": "ok", "timestamp": 1600326577630, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="ec7708b2-e5cf-4a82-a3d0-228c6492cb89"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 51686, "status": "ok", "timestamp": 1600326577630, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="iUXhuxLd2QJx" outputId="ec7708b2-e5cf-4a82-a3d0-228c6492cb89"
 # Step 4: Tune subsample and colsample_bytree
 test4 = {'subsample':[i/10.0 for i in range(6,10)],
          'colsample_bytree':[i/10.0 for i in range(6,10)]}
@@ -873,7 +873,7 @@ grid4 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
 grid4.fit(X_train, y_train)
 grid4.best_params_, grid4.best_score_
 
-# %% colab_type="code" id="4KsKxFvQ2P2l" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 32415, "status": "ok", "timestamp": 1600326678668, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="b5368b4e-223f-4c3e-f761-7055aedf3edf"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 32415, "status": "ok", "timestamp": 1600326678668, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="4KsKxFvQ2P2l" outputId="b5368b4e-223f-4c3e-f761-7055aedf3edf"
 # Step 5: Tuning scale_pos_weight
 test5 = {'scale_pos_weight': [i/10 for i in range(1,11)]}
 grid5 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
@@ -893,7 +893,7 @@ grid5 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
 grid5.fit(X_train, y_train)
 grid5.best_params_, grid5.best_score_
 
-# %% colab_type="code" id="eb5r91dZ544Z" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 95947, "status": "ok", "timestamp": 1600326882880, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="b3d0f2a0-fcd8-4409-ec1c-dd5c6937efe1"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 95947, "status": "ok", "timestamp": 1600326882880, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="eb5r91dZ544Z" outputId="b3d0f2a0-fcd8-4409-ec1c-dd5c6937efe1"
 # Step 6: Tuning n_estimators and learning_rate
 test6 = {'learning_rate': [0.005],
          'n_estimators': range(100,1001,200)}
@@ -914,7 +914,7 @@ grid6 = GridSearchCV(estimator = XGBClassifier(learning_rate=0.05,
 grid6.fit(X_train, y_train)
 grid6.best_params_, grid6.best_score_
 
-# %% colab_type="code" id="XxaKjAZeCPGh" colab={"base_uri": "https://localhost:8080/", "height": 136} executionInfo={"elapsed": 1509194, "status": "ok", "timestamp": 1600377472399, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="1d4dc87a-4d1d-4843-c114-c78bf8de9c0c"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 136} colab_type="code" executionInfo={"elapsed": 1509194, "status": "ok", "timestamp": 1600377472399, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="XxaKjAZeCPGh" outputId="1d4dc87a-4d1d-4843-c114-c78bf8de9c0c"
 params = {'max_depth': range(3,10,2),
          'min_child_weight': range(1,6,2),
          'gamma': [i/10.0 for i in range(0,5)],
@@ -933,7 +933,7 @@ random = RandomizedSearchCV(estimator = XGBClassifier(learning_rate=0.01,
 random.fit(X_train, y_train)
 random.best_params_, random.best_score_
 
-# %% colab_type="code" id="P7GhGUHMVSGd" colab={"base_uri": "https://localhost:8080/", "height": 170} executionInfo={"elapsed": 3355328, "status": "ok", "timestamp": 1600369018634, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="091d868e-1545-4c33-feed-70c60176dc69"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 170} colab_type="code" executionInfo={"elapsed": 3355328, "status": "ok", "timestamp": 1600369018634, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="P7GhGUHMVSGd" outputId="091d868e-1545-4c33-feed-70c60176dc69"
 params = {'max_depth': range(3,10,2),
          'min_child_weight': range(1,6,2),
          'gamma': [i/10.0 for i in range(0,5)],
@@ -951,15 +951,15 @@ random = RandomizedSearchCV(estimator = XGBClassifier(objective= 'binary:logisti
 random.fit(X_train, y_train)
 random.best_params_, random.best_score_
 
-# %% colab_type="code" id="tcN8UNJC8o3Y" colab={"base_uri": "https://localhost:8080/", "height": 673} executionInfo={"elapsed": 23164, "status": "ok", "timestamp": 1600377793212, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="b093e518-509b-41cd-dcbb-b82b3c588412"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 673} colab_type="code" executionInfo={"elapsed": 23164, "status": "ok", "timestamp": 1600377793212, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="tcN8UNJC8o3Y" outputId="b093e518-509b-41cd-dcbb-b82b3c588412"
 model_eval(random.best_estimator_, X_train, y_train, X_test, y_test,
            model_name='XGBoost Classifier')
 
-# %% colab_type="code" id="MX9FqcP8dbbV" colab={"base_uri": "https://localhost:8080/", "height": 673} executionInfo={"elapsed": 20880, "status": "ok", "timestamp": 1600369607495, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="1f4e254e-3883-4752-ee2e-ed17584e056c"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 673} colab_type="code" executionInfo={"elapsed": 20880, "status": "ok", "timestamp": 1600369607495, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="MX9FqcP8dbbV" outputId="1f4e254e-3883-4752-ee2e-ed17584e056c"
 model_eval(random.best_estimator_, X_train, y_train, X_test, y_test,
            model_name='XGBoost Classifier')
 
-# %% colab_type="code" id="W4IxrVV56Z6g" colab={"base_uri": "https://localhost:8080/", "height": 673} executionInfo={"elapsed": 38133, "status": "ok", "timestamp": 1600372088129, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="62203e3d-6320-42c2-ad0a-e5ac0af7ec99"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 673} colab_type="code" executionInfo={"elapsed": 38133, "status": "ok", "timestamp": 1600372088129, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="W4IxrVV56Z6g" outputId="62203e3d-6320-42c2-ad0a-e5ac0af7ec99"
 xgb_gpu = XGBClassifier(learning_rate=0.005,
                     n_estimators=1700,
                     max_depth=3,
@@ -980,20 +980,20 @@ model_eval(xgb_gpu, X_train, y_train, X_test, y_test,
 # %% [markdown] colab_type="text" id="nzmuYqNmzRFD"
 # #### Logistic Regression
 
-# %% colab_type="code" id="P5ML4J6vzWzm" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 24225, "status": "ok", "timestamp": 1600452251918, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="e85fe602-009c-4b2d-ba78-9da3bc98b83b"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 24225, "status": "ok", "timestamp": 1600452251918, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="P5ML4J6vzWzm" outputId="e85fe602-009c-4b2d-ba78-9da3bc98b83b"
 lr_cw = LogisticRegression(max_iter=9999,
                            class_weight='balanced',
                            C=11.288378916846883,
                            penalty='l2')
 model_eval(lr_cw, X_train_sc, y_train)
 
-# %% colab_type="code" id="mywXBHdNzZ6Y" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 24001, "status": "ok", "timestamp": 1600452252555, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="2f083adf-a1a8-4be2-a621-82c8c1787b67"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 24001, "status": "ok", "timestamp": 1600452252555, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="mywXBHdNzZ6Y" outputId="2f083adf-a1a8-4be2-a621-82c8c1787b67"
 test_eval(lr_cw, X_test_sc, y_test)
 
 # %% [markdown] colab_type="text" id="peU9EsMF5Pdy"
 # ##### Hyperparameter Tunning
 
-# %% colab_type="code" id="AlUV9oUt4Sfw" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 7886, "status": "ok", "timestamp": 1600410205106, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="3b5ab12b-ee58-4b25-c32d-1ab0cf1c5af9"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 7886, "status": "ok", "timestamp": 1600410205106, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="AlUV9oUt4Sfw" outputId="3b5ab12b-ee58-4b25-c32d-1ab0cf1c5af9"
 params = {'penalty': ['l1', 'l2'],
           'C': np.logspace(-4,4,20)}
 
@@ -1009,7 +1009,7 @@ grid.best_params_, grid.best_score_
 # %% [markdown] colab_type="text" id="9Rkmop0IzQ0E"
 # #### XGBoost Classifier
 
-# %% colab_type="code" id="RsnS_czY6dqI" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 48245, "status": "ok", "timestamp": 1600452289579, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="31936554-9a56-4662-ac50-9aad3d407128"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 48245, "status": "ok", "timestamp": 1600452289579, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="RsnS_czY6dqI" outputId="31936554-9a56-4662-ac50-9aad3d407128"
 ratio = float(np.sum(train['churn'] == 0)) / np.sum(train['churn'] == 1)
 
 xgb_cw = XGBClassifier(learning_rate=0.005,
@@ -1026,13 +1026,13 @@ xgb_cw = XGBClassifier(learning_rate=0.005,
 
 model_eval(xgb_cw, X_train, y_train)
 
-# %% colab_type="code" id="m0fZXDwlyyhK" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 48219, "status": "ok", "timestamp": 1600452290309, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="1b4eedc4-5581-4532-fb5e-4882b539d2bb"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 48219, "status": "ok", "timestamp": 1600452290309, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="m0fZXDwlyyhK" outputId="1b4eedc4-5581-4532-fb5e-4882b539d2bb"
 test_eval(xgb_cw, X_test, y_test)
 
 # %% [markdown] colab_type="text" id="dLmkhbhlxtFt"
 # ##### Hyperparameter Tunning
 
-# %% colab_type="code" id="fdw-8vKpFHWO" colab={}
+# %% colab={} colab_type="code" id="fdw-8vKpFHWO"
 estimator1 = XGBClassifier(learning_rate=0.1,
                            objective='binary:logistic',
                            scale_pos_weight=ratio,
@@ -1049,7 +1049,7 @@ grid1 = GridSearchCV(estimator=estimator1,
 grid1.fit(X_train, y_train)
 grid1.best_params_, grid1.best_score_)
 
-# %% colab_type="code" id="Dkb8RNE3GgQd" colab={}
+# %% colab={} colab_type="code" id="Dkb8RNE3GgQd"
 estimator2 = XGBClassifier(learning_rate=0.1,
                            n_estimators=1000,
                            objective='binary:logistic',
@@ -1080,7 +1080,7 @@ randomcv = RandomizedSearchCV(estimator=estimator2,
 randomcv.fit(X_train, y_train)
 randomcv.best_params_, randomcv.best_score_
 
-# %% colab_type="code" id="HMrK2pz4-OAL" colab={"base_uri": "https://localhost:8080/", "height": 690} executionInfo={"elapsed": 198583, "status": "ok", "timestamp": 1600400233401, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="345a1d36-e2f7-4d14-d151-1898b01e8d6a"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 690} colab_type="code" executionInfo={"elapsed": 198583, "status": "ok", "timestamp": 1600400233401, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="HMrK2pz4-OAL" outputId="345a1d36-e2f7-4d14-d151-1898b01e8d6a"
 estimator1 = XGBClassifier(learning_rate=0.01,
                        n_estimators=1000,
                        max_depth=3,
@@ -1099,7 +1099,7 @@ estimator1 = XGBClassifier(learning_rate=0.01,
 model_eval(rs_cv.best_estimator_, X_train, y_train, X_test, y_test,
            model_name='XGBoost Classifier (Weighted)')
 
-# %% colab_type="code" id="Q802TmLpTkp3" colab={}
+# %% colab={} colab_type="code" id="Q802TmLpTkp3"
 ratio = float(np.sum(train['churn'] == 0)) / np.sum(train['churn'] == 1)
 
 estimator = XGBClassifier(max_depth=3,
@@ -1126,13 +1126,13 @@ print(grid.best_params_, grid.best_score_)
 model_eval(grid.best_estimator_, X_train, y_train, X_test, y_test,
            model_name='XGBoost Classifier (Weighted)')
 
-# %% colab_type="code" id="M4femqlEb0OT" colab={"base_uri": "https://localhost:8080/", "height": 690} executionInfo={"elapsed": 45514, "status": "ok", "timestamp": 1600402762027, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="c2756f35-1885-457a-d1dc-ee08c9d5883e"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 690} colab_type="code" executionInfo={"elapsed": 45514, "status": "ok", "timestamp": 1600402762027, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="M4femqlEb0OT" outputId="c2756f35-1885-457a-d1dc-ee08c9d5883e"
 print(grid.best_params_, grid.best_score_)
 
 model_eval(grid.best_estimator_, X_train, y_train, X_test, y_test,
            model_name='XGBoost Classifier (Weighted)')
 
-# %% [markdown] id="90PTmrQQqTUp" colab_type="text"
+# %% [markdown] colab_type="text" id="90PTmrQQqTUp"
 # **Summary:**
 #
 # By tuning the class weight parameter, we get a model that can give a higher recall but with a decrease in Accuracy.
@@ -1142,31 +1142,31 @@ model_eval(grid.best_estimator_, X_train, y_train, X_test, y_test,
 # %% [markdown] colab_type="text" id="2imQAu646BR8"
 # ### Model with Oversampling
 
-# %% colab_type="code" id="ERqtap2X-ELM" colab={}
+# %% colab={} colab_type="code" id="ERqtap2X-ELM"
 from imblearn.over_sampling import SMOTE
 
 oversample = SMOTE()
 X_over, y_over = oversample.fit_resample(X_train.values, y_train.values)
 
-# %% colab_type="code" id="U4GnrZodz74u" colab={"base_uri": "https://localhost:8080/", "height": 342} executionInfo={"elapsed": 39863, "status": "ok", "timestamp": 1600452290312, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="dd788ff6-8e09-4b74-854c-34aaa3ed635a"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 342} colab_type="code" executionInfo={"elapsed": 39863, "status": "ok", "timestamp": 1600452290312, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="U4GnrZodz74u" outputId="dd788ff6-8e09-4b74-854c-34aaa3ed635a"
 sns.countplot(x=y_over)
 
 # %% [markdown] colab_type="text" id="uT1vLaGL0Y6J"
 # #### Logistic Regression
 
-# %% colab_type="code" id="AmU8acMO0LS8" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 39584, "status": "ok", "timestamp": 1600452291271, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="9867bdd8-7c8b-4328-e82e-fbc37cfb394d"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 39584, "status": "ok", "timestamp": 1600452291271, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="AmU8acMO0LS8" outputId="9867bdd8-7c8b-4328-e82e-fbc37cfb394d"
 lr = LogisticRegression(max_iter=9999,
                         C=1.623776739188721,
                         penalty='l2')
 model_eval(lr, X_over, y_over)
 
-# %% colab_type="code" id="iBY_OJS70gaI" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 34402, "status": "ok", "timestamp": 1600452291945, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="a8032cab-6120-4feb-8089-f347a716f6a4"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 34402, "status": "ok", "timestamp": 1600452291945, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="iBY_OJS70gaI" outputId="a8032cab-6120-4feb-8089-f347a716f6a4"
 test_eval(lr, X_test, y_test)
 
 # %% [markdown] colab_type="text" id="KtjbGrbf5ZKm"
 # ##### Hyperparameter Tunning
 
-# %% colab_type="code" id="VFxS8S5q1WGm" colab={"base_uri": "https://localhost:8080/", "height": 34} executionInfo={"elapsed": 13954, "status": "ok", "timestamp": 1600410047151, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="d0f74e33-58c4-4061-9360-2ba634bd8177"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 34} colab_type="code" executionInfo={"elapsed": 13954, "status": "ok", "timestamp": 1600410047151, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="VFxS8S5q1WGm" outputId="d0f74e33-58c4-4061-9360-2ba634bd8177"
 params = {'penalty': ['l1', 'l2'],
           'C': np.logspace(-4,4,20)}
 
@@ -1181,7 +1181,7 @@ grid.best_params_, grid.best_score_
 # %% [markdown] colab_type="text" id="kQZHotIf0boP"
 # #### XGBoost Classifier
 
-# %% colab_type="code" id="vXrOIK9I5sGl" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 43246, "status": "ok", "timestamp": 1600452557750, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="b2587d9d-0a14-4925-f8b9-488d7a2fd3a1"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 43246, "status": "ok", "timestamp": 1600452557750, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="vXrOIK9I5sGl" outputId="b2587d9d-0a14-4925-f8b9-488d7a2fd3a1"
 from xgboost import XGBClassifier
 xgb_os = XGBClassifier(learning_rate=0.005,
                        n_estimators=1700,
@@ -1196,10 +1196,10 @@ xgb_os = XGBClassifier(learning_rate=0.005,
                        seed=14)
 model_eval(xgb_os, X_over, y_over)
 
-# %% colab_type="code" id="6ZoCq1k6ZW3t" colab={"base_uri": "https://localhost:8080/", "height": 622} executionInfo={"elapsed": 1485, "status": "ok", "timestamp": 1600452589385, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="2f896ef4-43e9-4472-c2e0-be829c93b948"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 622} colab_type="code" executionInfo={"elapsed": 1485, "status": "ok", "timestamp": 1600452589385, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="6ZoCq1k6ZW3t" outputId="2f896ef4-43e9-4472-c2e0-be829c93b948"
 test_eval(xgb_os, X_test.values, y_test.values)
 
-# %% colab_type="code" id="Nnb_hmKy5tuh" colab={"base_uri": "https://localhost:8080/", "height": 119} executionInfo={"elapsed": 102188, "status": "ok", "timestamp": 1600426288546, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} outputId="a9d52926-6843-40d1-9fda-7834d5e19edb"
+# %% colab={"base_uri": "https://localhost:8080/", "height": 119} colab_type="code" executionInfo={"elapsed": 102188, "status": "ok", "timestamp": 1600426288546, "user": {"displayName": "Abdillah Fikri", "photoUrl": "", "userId": "04470220666512949031"}, "user_tz": -420} id="Nnb_hmKy5tuh" outputId="a9d52926-6843-40d1-9fda-7834d5e19edb"
 from sklearn.model_selection import RandomizedSearchCV
 
 estimator = XGBClassifier(learning_rate=0.01,
@@ -1224,7 +1224,7 @@ rs_cv = RandomizedSearchCV(estimator=estimator,
 rs_cv.fit(X_over, y_over)
 rs_cv.best_params_, rs_cv.best_score_
 
-# %% [markdown] id="WUhHxUmdqjje" colab_type="text"
+# %% [markdown] colab_type="text" id="WUhHxUmdqjje"
 # **Summary:**
 # * With the oversampling method, similar results are obtained for Logistic Regression compared to previous class weighted model.
 # * However, the XGBoost results were too overfit for the training and cross validation sets. The metrics result is less than what we expected because Recall is only 0.59
